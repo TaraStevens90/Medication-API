@@ -210,14 +210,122 @@ The frontend communicates with the backend via fetch requests.
 
 ## 🔮 Future Improvements
 
-1. Redis caching for LLM responses  
-2. Docker containerization  
-3. Deployment to Vercel/Railway  
-4. More advanced clinical rules  
-5. Medication normalization via RxNorm  
-6. Webhook support for real‑time updates  
-7. Role‑based authentication  
-8. Expanded test coverage  
+With additional time, I would expand the project in the following areas to increase performance, reliability, and clinical realism. Each improvement is chosen to address a real limitation or scalability concern in the current design.
+
+### 1. Redis Caching for LLM Responses
+Right now, every reconciliation request triggers a new LLM call, even when the same patient data is processed repeatedly. LLM calls are the slowest and most expensive part of the system.
+
+**Why this matters:**
+- Reduces repeated LLM calls for identical inputs  
+- Improves response time and user experience  
+- Lowers API usage costs  
+- Makes the system more scalable under load  
+
+**Trade‑off:**  
+Requires cache invalidation logic when patient data changes.
+
+---
+
+### 2. Docker Containerization
+The backend and frontend currently require manual setup. Docker would package them into reproducible containers.
+
+**Why this matters:**
+- Ensures consistent environments across machines  
+- Simplifies onboarding for reviewers or teammates  
+- Enables one‑command startup for the entire stack  
+- Prepares the project for cloud deployment  
+
+**Trade‑off:**  
+Adds initial setup complexity but pays off in deployment reliability.
+
+---
+
+### 3. Deployment to Vercel or Railway
+The project currently runs locally only. Deploying it would allow reviewers to interact with the system instantly in a browser.
+
+**Why this matters:**
+- Zero‑setup demo experience  
+- More realistic “production‑like” environment  
+- Easier sharing with stakeholders  
+- Demonstrates deployment skills  
+
+**Trade‑off:**  
+Requires configuring environment variables, CORS, and rate‑limiting for the LLM.
+
+---
+
+### 4. More Advanced Clinical Rules
+The current logic is intentionally simple to keep the project focused. Real EHR systems use complex rule engines.
+
+**Why this matters:**
+- Increases clinical realism  
+- Reduces reliance on the LLM for basic checks  
+- Improves safety and accuracy  
+- Supports more nuanced medication decisions  
+
+Examples of rules to add:
+- Drug–disease interactions  
+- Renal dosing adjustments  
+- Allergy cross‑checking  
+
+**Trade‑off:**  
+More rules require more maintenance and more extensive testing.
+
+---
+
+### 5. Medication Name Normalization (RxNorm)
+Different systems describe medications differently (e.g., “Metoprolol Tartrate 25mg” vs “Metoprolol 25 mg tablet”). Without normalization, matching accuracy is limited.
+
+**Why this matters:**
+- Standardizes medication names and strengths  
+- Improves matching across sources  
+- Increases reconciliation accuracy  
+- Aligns with real‑world EHR practices  
+
+**Trade‑off:**  
+Requires integrating external APIs or maintaining local datasets.
+
+---
+
+### 6. Webhook Support for Real‑Time Updates
+The system currently reconciles only when manually triggered. Real EHR systems react to new data automatically.
+
+**Why this matters:**
+- Enables real‑time medication updates  
+- Supports event‑driven workflows  
+- Makes the system more clinically realistic  
+- Reduces manual refreshes or polling  
+
+**Trade‑off:**  
+Requires secure endpoints and event‑handling logic.
+
+---
+
+### 7. Role‑Based Authentication
+The current API key is intentionally simple for evaluation. Real systems require different permissions for clinicians, pharmacists, and admins.
+
+**Why this matters:**
+- Improves security  
+- Supports more realistic user workflows  
+- Allows restricting sensitive actions  
+- Enables auditability and accountability  
+
+**Trade‑off:**  
+Adds complexity to authentication and user management.
+
+---
+
+### 8. Expanded Test Coverage
+The project already includes 20 unit tests, but as the system grows, more tests are needed to prevent regressions.
+
+**Why this matters:**
+- Increases reliability  
+- Provides confidence during refactoring  
+- Covers more edge cases  
+- Strengthens long‑term maintainability  
+
+**Trade‑off:**  
+More tests require ongoing maintenance as logic evolves.
 
 ---
 
