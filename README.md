@@ -2,7 +2,7 @@
 A full‑stack mini EHR integration project for medication reconciliation and data quality validation.
 
 ## Introduction Video
-[▶Click to watch the introduction video](./Project%20Video.mp4)
+[▶Click here to download introduction video](./Project%20Video.mp4)
 
 This short video introduces who I am, my background in healthcare, and why this project was meaningful to me.
 
