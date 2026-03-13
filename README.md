@@ -8,10 +8,12 @@ This short video introduces who I am, my background in healthcare, and why this 
 
 ## Overview
 This project implements a clinical data reconciliation engine that resolves conflicting medication information across multiple healthcare systems. It uses a hybrid approach combining:
+
 • 	deterministic scoring logic
 • 	AI‑powered clinical reasoning
 • 	data quality validation
 • 	clinician‑friendly frontend visualization
+
 The system ingests conflicting medication records, evaluates reliability, analyzes patient context, and produces a reconciled “most likely truth” with confidence scoring and human‑readable reasoning.
 (This project was built as part of the Full Stack Developer – EHR Integration Intern Take‑Home Assessment.)
 
@@ -55,6 +57,7 @@ A quick look at the organized project structure.
 ## Features
 
 Backend (FastAPI)
+
 • 	Medication reconciliation with confidence scoring
 • 	AI‑generated clinical reasoning
 • 	Data quality validation with breakdown + issues
@@ -64,6 +67,7 @@ Backend (FastAPI)
 • 	Clean, modular architecture
 
 Frontend (HTML/JS)
+
 • 	Clinician‑friendly dashboard
 • 	Reconciliation results display
 • 	Data quality scoring with red/yellow/green indicators
@@ -72,6 +76,7 @@ Frontend (HTML/JS)
 • 	Clear reasoning and recommended actions
 
 AI Integration
+
 • 	OpenAI‑powered reasoning
 • 	Implausible data detection
 • 	Natural‑language explanations
@@ -119,6 +124,7 @@ OpenAI was chosen because it provides reliable structured reasoning, strong safe
 This project uses OpenAI to enhance deterministic logic with contextual clinical reasoning.
 
 What the LLM does
+
 • 	Explains reconciliation decisions
 • 	Identifies implausible data
 • 	Provides clinician‑friendly reasoning
@@ -126,6 +132,7 @@ What the LLM does
 • 	Performs safety checks
 
 Prompt Engineering Strategy
+
 • 	Structured JSON input
 • 	Explicit instructions
 • 	Guardrails to reduce hallucinations
@@ -133,6 +140,7 @@ Prompt Engineering Strategy
 • 	Fallback responses on errors
 
 Error Handling
+
 • 	All API calls wrapped in try/except
 • 	Graceful fallback if the LLM is unavailable
 • 	Validation of returned fields
@@ -152,6 +160,7 @@ Input:
 }
 
 Output:
+
 • 	reconciled medication
 • 	confidence score
 • 	reasoning
@@ -161,19 +170,23 @@ Output:
 2️. POST /api/validate/data-quality
 Evaluates data quality across multiple dimensions.
 Output includes:
+
 • 	overall score
 • 	breakdown (completeness, accuracy, timeliness, plausibility)
 • 	issues detected
 
 ## Additional Endpoints (Bonus Features)
 These are not required by the assignment but included to enhance usability:
+
 •  /api/reconcile/medication/by-id
 •  /api/patient/{patient_id}/medications
 •  /api/patient/{patient_id}/reconcile
+
 These endpoints support dataset exploration and patient‑specific workflows.
 
 ## Testing
 This project includes 20 unit tests covering:
+
 •  medication normalization
 •  scoring logic
 •  conflict detection
@@ -189,22 +202,29 @@ Backend use command:         **'uvicorn main:app --reload'**
 Frontend use command:        **'python -m http.server 5500'**
 
 Then open index.html in your browser with:  http://127.0.0.1:5500/frontend/index.html
+
 The frontend communicates with the backend via fetch requests.
 
 ## Key Design Decisions
+
 • Hybrid AI + deterministic logic
     LLM handles reasoning; backend handles scoring and validation.
+    
 • Simple API key auth
     Lightweight and appropriate for a take‑home project.
+    
 • No database
     In‑memory data keeps the project simple and focused.
+    
 • Modular architecture
     Separation of concerns:
+    
         • models
         • services
         • utils
         • routes
         • tests
+        
 • Clinician‑friendly UI
     Prioritized clarity over design complexity.
 
@@ -244,10 +264,12 @@ Synthetic EHR data is included in the repository for evaluation.
 
 ## Final Notes
 This project demonstrates:
+
 • full‑stack development
 • clinical data reasoning
 • AI integration
 • clean architecture
 • strong testing discipline
 • user‑friendly design
+
 It is built to be clear, maintainable, and easy for evaluators to run.
