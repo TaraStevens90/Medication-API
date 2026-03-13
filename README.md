@@ -108,6 +108,7 @@ x-api-key:       mysecretkey
 This key is intentionally simple and included for evaluation purposes.
 
 ## AI Integration & Prompt Engineering
+OpenAI was chosen because it provides reliable structured reasoning, strong safety controls, and predictable JSON‑style outputs.
 This project uses OpenAI to enhance deterministic logic with contextual clinical reasoning.
 What the LLM does
 • 	Explains reconciliation decisions
