@@ -17,31 +17,31 @@ The system ingests conflicting medication records, evaluates reliability, analyz
 
 ## Screenshots
 
-Clinical Reconciliation Dashboard
+### Clinical Reconciliation Dashboard
 Frontend view of the clinician‑friendly dashboard used to visualize reconciled medication data.
 ![Clinical Reconciliation Dashboard](./Demo%20Screenshots/Clinical%20Reconciliation%20Dashboard.png)
 
-Data Quality Report
+### Data Quality Report
 Frontend data quality validation results for a patient’s medication list.
 ![Data Quality Report](./Demo%20Screenshots/Data%20Quality%20Report.png)
 
-Swagger UI
+### Swagger UI
 Interactive API with endpoints.
 ![Swagger UI](./Demo%20Screenshots/Swagger%20UI.png)
 
-Reconcile Medication Endpoint
+### Reconcile Medication Endpoint
 Example of the backend reconciliation endpoint in action.
 ![Reconcile Medication](./Demo%20Screenshots/Reconcile%20Medication.png)
 
-Validate Data Quality Endpoint
+### Validate Data Quality Endpoint
 Example of the `/validate/data-quality` endpoint response.
 ![Validate Data Quality](./Demo%20Screenshots/Validate%20Data%20Quality.png)
 
-Passed Reconciliation Tests
+### Passed Reconciliation Tests
 All unit tests running successfully.
 ![Passed Reconciliation Tests](./Demo%20Screenshots/Passed%20Reconciliation%20Tests.png)
 
-Project Folder Layout
+### Project Folder Layout
 A quick look at the organized project structure.
 ![Folder Layout](./Demo%20Screenshots/Folder%20Layout.png)
 
