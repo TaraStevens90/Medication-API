@@ -19,30 +19,37 @@ The system ingests conflicting medication records, evaluates reliability, analyz
 
 ### Clinical Reconciliation Dashboard
 Frontend view of the clinician‑friendly dashboard used to visualize reconciled medication data.
+
 ![Clinical Reconciliation Dashboard](./Demo%20Screenshots/Clinical%20Reconciliation%20Dashboard.png)
 
 ### Data Quality Report
 Frontend data quality validation results for a patient’s medication list.
+
 ![Data Quality Report](./Demo%20Screenshots/Data%20Quality%20Report.png)
 
 ### Swagger UI
 Interactive API with endpoints.
+
 ![Swagger UI](./Demo%20Screenshots/Swagger%20UI.png)
 
 ### Reconcile Medication Endpoint
 Example of the backend reconciliation endpoint in action.
+
 ![Reconcile Medication](./Demo%20Screenshots/Reconcile%20Medication.png)
 
 ### Validate Data Quality Endpoint
 Example of the `/validate/data-quality` endpoint response.
+
 ![Validate Data Quality](./Demo%20Screenshots/Validate%20Data%20Quality.png)
 
 ### Passed Reconciliation Tests
 All unit tests running successfully.
+
 ![Passed Reconciliation Tests](./Demo%20Screenshots/Passed%20Reconciliation%20Tests.png)
 
 ### Project Folder Layout
 A quick look at the organized project structure.
+
 ![Folder Layout](./Demo%20Screenshots/Folder%20Layout.png)
 
 ## Features
@@ -99,17 +106,18 @@ AI Integration
 └──────────────────────────┘
 
 ## Environment Variables
-Create a file in the project root:   OPENAI_API_KEY=your_openai_key_here
+Create a file in the project root:   **'OPENAI_API_KEY=your_openai_key_here'**
 A .env_example file is included for reference.
 
 ## API Authentication
 All backend requests require a simple header‑based API key:
-x-api-key:       mysecretkey
+x-api-key:       **'mysecretkey'**
 This key is intentionally simple and included for evaluation purposes.
 
 ## AI Integration & Prompt Engineering
 OpenAI was chosen because it provides reliable structured reasoning, strong safety controls, and predictable JSON‑style outputs.
 This project uses OpenAI to enhance deterministic logic with contextual clinical reasoning.
+
 What the LLM does
 • 	Explains reconciliation decisions
 • 	Identifies implausible data
@@ -173,12 +181,13 @@ This project includes 20 unit tests covering:
 •  safety checks
 •  endpoint behavior
 
-Run tests with:   pytest -v   or   python -m unittest discover -v
+Run tests with:   **'pytest -v'**   or   **'python -m unittest discover -v'**
 
 ## Running the Application
-Backend use command:         uvicorn main:app --reload
+Backend use command:         **'uvicorn main:app --reload'**
 
-Frontend use command:        python -m http.server 5500
+Frontend use command:        **'python -m http.server 5500'**
+
 Then open index.html in your browser with:  http://127.0.0.1:5500/frontend/index.html
 The frontend communicates with the backend via fetch requests.
 
@@ -201,6 +210,7 @@ The frontend communicates with the backend via fetch requests.
 
 ## Future Improvements
 With additional time, I would expand the project in the following areas to increase performance, reliability, and clinical realism:
+
 1. Redis Caching for LLM Responses
 Caching previous AI responses would reduce repeated calls to the LLM when the same patient data is reconciled multiple times. 
 This improves speed and reduces API usage.
