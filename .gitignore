@@ -1,0 +1,30 @@
+# --- Python ---
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# --- Virtual Environment ---
+venv/
+
+# --- Environment Variables ---
+.env
+
+# --- Pytest Cache ---
+.pytest_cache/
+
+# --- VS Code ---
+.vscode/
+
+# --- OneDrive Junk ---
+~$*
+*.tmp
+Thumbs.db
+desktop.ini
+
+# --- OS Files ---
+.DS_Store
+
+# --- Project Video ---
+# If you want to keep the video out of GitHub, uncomment this:
+# Project Video.mp4

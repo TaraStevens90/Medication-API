@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Clinical Reconciliation Dashboard</title>
+  <!-- Link to external stylesheet -->
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <h1>Clinical Reconciliation Dashboard</h1>
+
+  <!-- Section: Patient Lookup -->
+  <div class="section">
+    <h2>Patient Lookup</h2>
+    <input type="text" id="patientId" placeholder="Enter Patient ID" />
+    <button onclick="handleReconcile()">Reconcile Medications</button>
+    <button onclick="handleDataQuality()">Check Data Quality</button>
+  </div>
+
+  <!-- Section: All Medication Sources -->
+  <div class="section">
+    <h2>All Medication Sources</h2>
+    <ul id="medicationsList">
+      <!-- JS will populate this list with medication, system, last_updated, source_reliability -->
+    </ul>
+  </div>
+
+  <!-- Section: Reconciliation Result -->
+  <div class="section">
+    <h2>Reconciliation Result</h2>
+
+  <!-- Section: Reconciled medication -->
+    <h3>Reconciled Medication</h3>
+    
+    <p><strong>Medication:</strong> <span id="truth">-</span></p>
+    
+    <p><strong>Confidence Score:</strong></p>
+  <div id="confidenceBar" class="bar">
+    <span class="bar-label"></span>
+  </div>
+
+    <p><strong>AI Reasoning:</strong> <span id="reasoning">-</span></p>
+    <button onclick="copyReasoning()">Copy Reasoning</button>
+
+    <p><strong>Recommended Actions:</strong></p>
+    <ul id="actionsList"></ul>
+
+    <p><strong>Clinical Safety Check:</strong> <span id="safety">-</span></p>
+    <button onclick="approveSuggestion()">Approve</button>
+    <button onclick="rejectSuggestion()">Reject</button>
+    <p id="decisionStatus"></p>
+  </div>
+
+  <!-- Section: Data Quality Report -->
+  <div id="dataQualitySection" class="section" style="display: none;">
+    <h2>Data Quality Report</h2>
+
+    <p><strong>Overall Score:</strong> <span id="qualityScore">-</span></p>
+
+    <table id="breakdownTable" border="1" cellpadding="5" style="border-collapse: collapse; width: 100%;">
+      <thead>
+        <tr>
+          <th>Category</th>
+          <th>Description</th>
+          <th>Score</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Completeness</td>
+          <td>How much expected clinical data is present (meds, dates, allergies, reliability, etc.)</td>
+          <td id="dq-completeness">-</td>
+        </tr>
+        <tr>
+          <td>Accuracy</td>
+          <td>Whether the data follows valid formats and contains no malformed or incorrect values</td>
+          <td id="dq-accuracy">-</td>
+        </tr>
+        <tr>
+          <td>Timeliness</td>
+          <td>How fresh or stale the data is based on last updated or last filled dates</td>
+          <td id="dq-timeliness">-</td>
+        </tr>
+        <tr>
+          <td>Clinical Plausibility</td>
+          <td>Whether the medication information makes sense clinically (dose, class, combinations)</td>
+          <td id="dq-plausibility">-</td>
+        </tr>
+        <tr>
+          <td>Consistency</td>
+          <td>How often sources agree with each other on medication name, dose, and attributes</td>
+          <td id="dq-consistency">-</td>
+        </tr>
+        <tr>
+          <td>Conflict Severity</td>
+          <td>Severity of disagreements (minor dose mismatch vs major medication conflict)</td>
+          <td id="dq-conflict">-</td>
+        </tr>
+        <tr>
+          <td>Medication Diversity</td>
+          <td>How many distinct medications the patient is taking, used as a proxy for regimen complexity and potential interaction risk.</td>
+          <td id="dq-diversity">-</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p><strong>Issues Detected:</strong></p>
+    <ul id="issuesList"></ul>
+  </div>
+
+<!-- Link to external js script -->
+<script src="script.js"></script>
+
+</body>
+</html>
