@@ -126,8 +126,10 @@ This key is intentionally simple and included for evaluation purposes.
 ### 1. POST `/api/reconcile/medication`
 Reconciles conflicting medication records.
 
-**Sample Input**
-###{
+### Sample Input
+
+```json
+{
   "sources": [
     {
       "system": "A",
@@ -151,7 +153,7 @@ Reconciles conflicting medication records.
       "last_filled": "2025-12-01"
     }
   ]
-}###
+}```
 
 **Output includes:**
 
@@ -164,7 +166,7 @@ Reconciles conflicting medication records.
 ** Sample Output:**
 
 ### {
-  "all_medications": [
+  ```"all_medications": [
     {
       "system": "A",
       "medication": "Metformin 500mg",
@@ -198,20 +200,20 @@ Reconciles conflicting medication records.
     "clinical_safety_check": "WARNING",
     "safety_reason": "Duplicate medications detected across sources; Multiple dosage variants of the same medication detected"
   }
-}###
+}```
 
 ### 2. POST `/api/validate/data-quality`
 Evaluates data quality across multiple dimensions.
 
 **Sample Input:**
 
-###{
+```{
   "system": "Epic",
   "medication": "Metformin 500mg",
   "source_reliability": "high",
   "last_updated": "2026-01-02",
   "last_filled": null
-}###
+}```
 
 **Output includes:**
 
@@ -219,7 +221,7 @@ Evaluates data quality across multiple dimensions.
 - breakdown (completeness, accuracy, timeliness, plausibility)  
 - issues detected
 
-### {
+```{
   "overall_score": 71,
   "breakdown": {
     "completeness": 60,
@@ -242,7 +244,7 @@ Evaluates data quality across multiple dimensions.
       "severity": "high"
     }
   ]
-}###
+}```
 
 ---
 
