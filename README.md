@@ -155,6 +155,14 @@ Reconciles conflicting medication records.
 }
 ```
 
+**Output includes:**
+
+- reconciled medication  
+- confidence score  
+- reasoning  
+- recommended actions  
+- safety check
+
 ### Sample Output
 ```json
 {
@@ -193,18 +201,20 @@ Reconciles conflicting medication records.
   }
 }
 ```
-### 2. POST `/api/validate/data-quality`
+
+### 2. POST /api/validate/data-quality
 Evaluates data quality across multiple dimensions.
 
-**Sample Input:**
-
-```{
+### Sample Input:
+```JSON
+{
   "system": "Epic",
   "medication": "Metformin 500mg",
   "source_reliability": "high",
   "last_updated": "2026-01-02",
   "last_filled": null
-}```
+}
+```
 
 **Output includes:**
 
@@ -212,7 +222,8 @@ Evaluates data quality across multiple dimensions.
 - breakdown (completeness, accuracy, timeliness, plausibility)  
 - issues detected
 
-```{
+```JSON
+{
   "overall_score": 71,
   "breakdown": {
     "completeness": 60,
@@ -235,7 +246,8 @@ Evaluates data quality across multiple dimensions.
       "severity": "high"
     }
   ]
-}```
+}
+```
 
 ---
 
