@@ -107,7 +107,7 @@ The system ingests conflicting medication records, evaluates reliability, analyz
 ---
 
 ## 🔐 Environment Variables
-Create a `.env` file in the project root: **'OPENAI_API_KEY=your_openai_key_here'**
+Create a `.env` file in the project root: **OPENAI_API_KEY=your_openai_key_here**
 
 A `.env_example` file is included for reference.
 
@@ -115,7 +115,7 @@ A `.env_example` file is included for reference.
 
 ## 🔑 API Authentication
 All backend requests require a simple header‑based API key:
-x-api-key: **'mysecretkey'**
+x-api-key: **mysecretkey**
 
 This key is intentionally simple and included for evaluation purposes.
 
@@ -126,22 +126,123 @@ This key is intentionally simple and included for evaluation purposes.
 ### 1. POST `/api/reconcile/medication`
 Reconciles conflicting medication records.
 
+**Sample Input**
+###{
+  "sources": [
+    {
+      "system": "A",
+      "medication": "Metformin 500mg",
+      "source_reliability": "high",
+      "last_updated": "2026-03-01",
+      "last_filled": "2026-02-28"
+    },
+    {
+      "system": "B",
+      "medication": "Metformin 500mg",
+      "source_reliability": "medium",
+      "last_updated": "2026-02-15",
+      "last_filled": "2026-02-14"
+    },
+    {
+      "system": "C",
+      "medication": "Lisinopril 20mg",
+      "source_reliability": "low",
+      "last_updated": "2025-12-01",
+      "last_filled": "2025-12-01"
+    }
+  ]
+}###
+
 **Output includes:**
 
 - reconciled medication  
 - confidence score  
 - reasoning  
 - recommended actions  
-- safety check  
+- safety check
+
+** Sample Output:**
+
+### {
+  "all_medications": [
+    {
+      "system": "A",
+      "medication": "Metformin 500mg",
+      "last_updated": "2026-03-01",
+      "last_filled": "2026-02-28",
+      "source_reliability": "high"
+    },
+    {
+      "system": "B",
+      "medication": "Metformin 500mg",
+      "last_updated": "2026-02-15",
+      "last_filled": "2026-02-14",
+      "source_reliability": "medium"
+    },
+    {
+      "system": "C",
+      "medication": "Lisinopril 20mg",
+      "last_updated": "2025-12-01",
+      "last_filled": "2025-12-01",
+      "source_reliability": "low"
+    }
+  ],
+
+  "reconciled_medication": {
+    "truth": "Metformin 500mg",
+    "confidence": 0.74,
+    "reasoning": "The reconciled medication, Metformin 500mg, is the most likely correct choice due to its high reliability from source A, which was last updated on March 1, 2026, indicating it reflects the most current information. Additionally, both sources A and B confirm the same dosage of Metformin, providing consistency across reliable sources, while the lower reliability and older update of source C for Lisinopril diminishes its credibility in this context.",
+    "recommended_actions": [
+      "Verify with sources that Metformin 500mg is correct"
+    ],
+    "clinical_safety_check": "WARNING",
+    "safety_reason": "Duplicate medications detected across sources; Multiple dosage variants of the same medication detected"
+  }
+}###
 
 ### 2. POST `/api/validate/data-quality`
 Evaluates data quality across multiple dimensions.
+
+**Sample Input:**
+
+###{
+  "system": "Epic",
+  "medication": "Metformin 500mg",
+  "source_reliability": "high",
+  "last_updated": "2026-01-02",
+  "last_filled": null
+}###
 
 **Output includes:**
 
 - overall score  
 - breakdown (completeness, accuracy, timeliness, plausibility)  
-- issues detected  
+- issues detected
+
+### {
+  "overall_score": 71,
+  "breakdown": {
+    "completeness": 60,
+    "accuracy": 100,
+    "timeliness": 100,
+    "clinical_plausibility": 100,
+    "consistency": 100,
+    "conflict_severity": 0,
+    "medication_diversity": 40
+  },
+  "issues_detected": [
+    {
+      "field": "allergies",
+      "issue": "No allergies documented - likely incomplete",
+      "severity": "medium"
+    },
+    {
+      "field": "medications",
+      "issue": "No medications listed",
+      "severity": "high"
+    }
+  ]
+}###
 
 ---
 
@@ -168,19 +269,19 @@ This project includes 20 unit tests covering:
 
 Run tests with:
 
-**`pytest -v`**  
+**pytest -v**  
 or  
-**`python -m unittest discover -v`**
+**python -m unittest discover -v**
 
 ---
 
 ## ▶️ Running the Application
 
 ### Backend
-**`uvicorn main:app --reload`**
+**uvicorn main:app --reload**
 
 ### Frontend
-**`python -m http.server 5500`**
+**python -m http.server 5500**
 
 Then open: http://127.0.0.1:5500/frontend/index.html
 
