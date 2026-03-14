@@ -123,11 +123,10 @@ This key is intentionally simple and included for evaluation purposes.
 
 ## 🧩 API Endpoints
 
-### 1. POST `/api/reconcile/medication`
+### 1. POST /api/reconcile/medication
 Reconciles conflicting medication records.
 
 ### Sample Input
-
 ```json
 {
   "sources": [
@@ -153,20 +152,13 @@ Reconciles conflicting medication records.
       "last_filled": "2025-12-01"
     }
   ]
-}```
+}
+```
 
-**Output includes:**
-
-- reconciled medication  
-- confidence score  
-- reasoning  
-- recommended actions  
-- safety check
-
-** Sample Output:**
-
-### {
-  ```"all_medications": [
+### Sample Output
+```json
+{
+  "all_medications": [
     {
       "system": "A",
       "medication": "Metformin 500mg",
@@ -189,7 +181,6 @@ Reconciles conflicting medication records.
       "source_reliability": "low"
     }
   ],
-
   "reconciled_medication": {
     "truth": "Metformin 500mg",
     "confidence": 0.74,
@@ -200,8 +191,8 @@ Reconciles conflicting medication records.
     "clinical_safety_check": "WARNING",
     "safety_reason": "Duplicate medications detected across sources; Multiple dosage variants of the same medication detected"
   }
-}```
-
+}
+```
 ### 2. POST `/api/validate/data-quality`
 Evaluates data quality across multiple dimensions.
 
