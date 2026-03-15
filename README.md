@@ -8,6 +8,11 @@ A full‑stack mini EHR integration project for medication reconciliation and da
 
 This short video introduces who I am, my background in healthcare, and why this project was meaningful to me.
 
+## Medication API Demo Video
+[▶ Click here to download the introduction video](./Medication_API_Demo.mp4)
+
+This demo shows part of the script, the Swagger interface, how the endpoints work, and a walkthrough of all the buttons and features in the front‑end.
+
 ---
 
 ## 📌 Overview
